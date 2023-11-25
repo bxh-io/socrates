@@ -1,4 +1,6 @@
 import argparse
+import os
+
 
 from bs4 import BeautifulSoup
 from openai import OpenAI
@@ -17,7 +19,8 @@ response = requests.get(args.url)
 soup = BeautifulSoup(response.content, features="html.parser")
 url_body = soup.get_text()
 
-prompt = f"For the following text could you reply with a list of {args.number_of_questions} questions I could ask to someone to see if they have understood it: '{url_body}'"
+prompt = f"""For the following text could you reply with a list of {args.number_of_questions} 
+questions I could ask to someone to see if they have understood it: '{url_body}'"""
 
 client = OpenAI()
 chat_completion = client.chat.completions.create(
@@ -31,3 +34,9 @@ chat_completion = client.chat.completions.create(
 )
 
 print(chat_completion.choices[0].message.content)
+
+if True:
+    print("*** Copying to system clipboard!")
+    os.system(f'echo "{chat_completion.choices[0].message.content}" | pbcopy')
+
+
