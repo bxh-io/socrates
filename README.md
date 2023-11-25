@@ -6,5 +6,7 @@ If you put a URL in, it will return 3 questions you can ask your report about wh
 OPENAI_API_KEY="YOUR_KEY" python question_creator.py "URL HERE"
 ```
 
-### Needs `python -m pip install openai requests beautifulsoup4`
-v
+
+Needs this run once: 
+
+`python -m pip install openai requests beautifulsoup4`

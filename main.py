@@ -19,13 +19,7 @@ url_body = soup.get_text()
 
 prompt = f"For the following text could you reply with a list of {args.number_of_questions} questions I could ask to someone to see if they have understood it: '{url_body}'"
 
-
-client = OpenAI(
-    # defaults to os.environ.get("OPENAI_API_KEY")
-    api_key="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",
-)
-
-
+client = OpenAI()
 chat_completion = client.chat.completions.create(
     messages=[
         {
